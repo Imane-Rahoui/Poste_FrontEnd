@@ -1,0 +1,40 @@
+#hidden {
+  color: transparent;
+}
+#profile {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  width: 100px;
+  border-radius: 50px;
+}
+#containerPic {
+  background-color: #ecf0f1;
+  width: 400px;
+  height: 300px;
+}
+#containerAll {
+  position: absolute;
+  width: 900px;
+  right: 0px;
+  top: 200px;
+  left: 200px;
+  border: solid 2px #ecf0f1;
+  border-radius: 5px;
+}
+#h6 {
+  display: inline-block;
+}
+
+#add2 {
+  margin-top: 18px;
+}
+#hr1 {
+  width: 200px;
+  position: relative;
+  left: 40px;
+}
+#container2 {
+  position: relative;
+  top: 50px;
+  left: 96px;
+}

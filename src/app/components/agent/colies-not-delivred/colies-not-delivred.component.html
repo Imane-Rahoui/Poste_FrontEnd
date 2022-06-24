@@ -1,0 +1,63 @@
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<div class="row" id="card">
+    <div class="col-md-4" *ngFor="let colie of colies">
+        <div class="card border-light mb-3">
+            <div class="card-header" id="header">
+                <h4>
+                    From
+                    <span id="fn">{{ colie.firstNameSender }} {{ colie.lastNameSender }}</span>
+                    To
+                    <span id="fn">{{ colie.firstNameRecipient }} {{ colie.lastNameRecipient }}</span>
+                </h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Country : </strong><span id="fn">{{ colie.countryRecipient }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>City : </strong><span id="fn">{{ colie.cityRecipient }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Street : </strong><span id="fn">{{ colie.streetSender }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Mobile : </strong><span id="fn">{{ colie.mobileRecipient }}</span>
+                    </li>
+                    <li class="list-group-item text-center">
+                        <button type="button" id="btnConfirm" class="btn btn-outline-primary"
+                            (click)="open(content, colie.colieId)">
+                            Delivred
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">Colie Id :<span id="idStyle"> {{ colieId }} </span></h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Do you want to rate this collie as issued ?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" id="cancel" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" ngbAutofocus class="btn btn-outline-warning" id="confirm" (click)="confirm()">
+            Confirm
+        </button>
+    </div>
+</ng-template>
+
+<app-footer></app-footer>

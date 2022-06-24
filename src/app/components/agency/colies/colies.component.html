@@ -1,0 +1,190 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+
+<div id='search'>
+    <form [formGroup]="SearchColie" class="d-flex"><button type="button" class="btn btn-primary" id="add"
+            (click)="open(content2, 'i')">
+            New
+        </button>
+        <input class="form-control me-sm-2" type="text" placeholder="Search by CIN" formControlName="cin">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="getColiesByCin()">Search</button>
+    </form>
+</div>
+<hr id="hidden" />
+<table class="table table-hover" id="tableAgent">
+    <tbody>
+        <tr class="table-primary" id="th">
+            <th scope="col">Id</th>
+            <th scope="col">cin Sender</th>
+            <th scope="col">name Sender</th>
+            <th scope="col">mobile sender</th>
+            <th scope="col">cin Recipient</th>
+            <th scope="col">name Recipient</th>
+            <th scope="col">mobile Recipient</th>
+            <th scope="col">address Recipient</th>
+            <th scope="col">Status</th>
+            <th scope="col">Lot</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr class="table-light" *ngFor="let colie of colies">
+            <th scope="row">{{ colie.colieId }}</th>
+            <td>{{ colie.cinSender }}</td>
+            <td>{{ colie.firstNameSender }} {{ colie.lastNameSender }}</td>
+            <td>{{ colie.mobileSender }}</td>
+            <td>{{ colie.cinSender }}</td>
+            <td>{{ colie.firstNameRecipient }} {{ colie.lastNameRecipient }}</td>
+            <td>{{ colie.mobileRecipient }}</td>
+            <td>
+                {{ colie.countryRecipient }} {{ colie.cityRecipient }}
+                {{ colie.cityRecipient }}
+            </td>
+            <td *ngIf="colie.delivred">Delivred</td>
+            <td *ngIf="!colie.delivred">Not Delivred</td>
+            <td *ngFor="let lot of lots">
+                <span [hidden]="lot.lotId!=colie.lotId">{{ lot.nameLot }}</span>
+            </td>
+            <td colspan="3" id="btnParent">
+                <button type="button" class="btn btn-danger" (click)="open(content, colie.colieId)"
+                    [disabled]='colie.delivred'>
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+        <tr class="table-light" [hidden]="flag">
+            <td scope="row" colspan="13">no colie in this agency</td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            colie Id :<span id="idStyle"> {{ colieId }} </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>do you want to delete this colie ?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ngbAutofocus class="btn btn-outline-dark" id="cancel" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteColie()">
+            Delete
+        </button>
+    </div>
+</ng-template>
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            <span id="idStyle"> New Batch </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <form [formGroup]="formCC">
+        <div class="modal-body">
+            <div class="form-group">
+                <label id="title">Sender Infos : </label>
+            </div>
+
+            <div class="form-group">
+                <label for="cinSender">Cin Sender :</label>
+                <input ngbAutofocus formControlName="cinSender" type="text" class="form-control" id="cinSender" />
+            </div>
+            <div class="form-group">
+                <label for="firstNameSender">First Name :</label>
+                <input formControlName="firstNameSender" type="text" class="form-control" id="firstNameSender" />
+            </div>
+            <div class="form-group">
+                <label for="lastNameSender">Last Name :</label>
+                <input formControlName="lastNameSender" type="text" class="form-control" id="lastNameSender" />
+            </div>
+            <div class="form-group">
+                <label for="streetSender">Street :</label>
+                <input formControlName="streetSender" type="text" class="form-control" id="streetSender" />
+            </div>
+            <div class="form-group">
+                <label for="mobileSender">Mobile :</label>
+                <input formControlName="mobileSender" type="text" class="form-control" id="mobileSender" />
+            </div>
+            <div class="form-group">
+                <label for="emailSender">E-mail :</label>
+                <input formControlName="emailSender" type="text" class="form-control" id="emailSender" />
+            </div>
+            <div class="form-group">
+                <label id="title">Recipient Infos : </label>
+            </div>
+            <div class="form-group">
+                <label for="cinRecipient">Cin :</label>
+                <input formControlName="cinRecipient" type="text" class="form-control" id="cinRecipient" />
+            </div>
+            <div class="form-group">
+                <label for="firstNameRecipient">First Name :</label>
+                <input formControlName="firstNameRecipient" type="text" class="form-control" id="firstNameRecipient" />
+            </div>
+            <div class="form-group">
+                <label for="lastNameRecipient">Last Name :</label>
+                <input formControlName="lastNameRecipient" type="text" class="form-control" id="lastNameRecipient" />
+            </div>
+            <div class="form-group">
+                <label for="countryRecipient">Country :</label>
+                <input formControlName="countryRecipient" type="text" class="form-control" id="countryRecipient" />
+            </div>
+
+            <div class="form-group">
+                <label for="cityRecipient">City :</label>
+                <input formControlName="cityRecipient" type="text" class="form-control" id="cityRecipient" />
+            </div>
+            <div class="form-group">
+                <label for="streetRecipient">Street :</label>
+                <input formControlName="streetRecipient" type="text" class="form-control" id="streetRecipient" />
+            </div>
+            <div class="form-group">
+                <label for="mobileRecipient">Mobile :</label>
+                <input formControlName="mobileRecipient" type="text" class="form-control" id="mobileRecipient" />
+            </div>
+            <div class="form-group">
+                <label id="title">Other : </label>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label mr-4" for="nameLot"> Lots </label>
+                <select class="form-select" id="nameLot" formControlName="nameLot">
+                    <option *ngIf="disponibilite" selected>
+                        no batsh dispo
+                    </option>
+                    <option *ngFor="let lot of lots" [hidden]='lotsDispo(lot.maxCapacity)'>
+                        {{ lot.nameLot }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" id="cancel" (click)="close()">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-success" (click)="createColie()">
+                Create
+            </button>
+        </div>
+    </form>
+</ng-template>
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<app-footer></app-footer>

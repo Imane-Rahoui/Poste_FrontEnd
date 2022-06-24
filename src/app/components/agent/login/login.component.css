@@ -1,0 +1,31 @@
+#btn {
+  background-color: #486599;
+  border-color: #7a8eb3;
+  margin-bottom: 120px;
+}
+#btn:hover {
+  background-color: #415e92;
+  border-color: #7a8eb3;
+}
+#login1 {
+  position: absolute;
+  top: 60px;
+  height: 200px;
+  width: 100%;
+  /*   filter: blur(2px);
+    -webkit-filter: blur(2px); */
+}
+#formu {
+  position: relative;
+  top: 140px;
+  right: 200px;
+  margin-top: 60px;
+}
+#logo {
+  position: absolute;
+  top: 330px;
+  right: 200px;
+}
+#footerlogin {
+  margin-top: 100px;
+}

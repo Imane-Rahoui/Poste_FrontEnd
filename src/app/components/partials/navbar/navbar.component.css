@@ -1,0 +1,54 @@
+#logo2 {
+  width: 200px;
+}
+#navbar {
+  position: absolute;
+  top: 66px;
+  right: 0px;
+  left: 0px;
+}
+#pageRight {
+  position: absolute;
+  top: 20px;
+  right: 90px;
+  font-size: 20px;
+}
+#pageLeft {
+  position: absolute;
+  left: 300px;
+  top: 20px;
+  font-size: 20px;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  color: #415e92;
+}
+#pageLeft2 {
+  position: absolute;
+  left: 570px;
+  top: 20px;
+  font-size: 20px;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  color: #415e92;
+}
+#pageLeft3 {
+  position: absolute;
+  left: 820px;
+  top: 20px;
+  font-size: 20px;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  color: #415e92;
+}
+.btn-link {
+  font-weight: 400;
+  color: #415e92;
+  text-decoration: none;
+}
+.btn {
+  border: none;
+  text-decoration: none;
+}

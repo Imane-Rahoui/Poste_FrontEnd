@@ -1,0 +1,99 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<button type="button" class="btn btn-primary" id="add" (click)="open(content2, 'none')">New</button>
+
+<hr id="hidden">
+<table class="table table-hover" id="tableAgent">
+    <tbody>
+        <tr class="table-primary" id="th">
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Street</th>
+            <th scope="col">Capacity</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr class="table-light" *ngFor="let lot of lots">
+            <td>{{ lot.lotId }}</td>
+            <td>{{ lot.nameLot }}</td>
+            <td>{{ lot.street }}</td>
+            <td>{{ lot.maxCapacity }}</td>
+            <td colspan="3" id="btnParent">
+                <button type="button" class="btn btn-danger" [disabled]='testCapacity(lot.maxCapacity)'
+                    (click)="open(content, lot.lotId)">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+        <tr class="table-light" [hidden]="flag">
+            <td scope="row" colspan="10">no lot in this agency</td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            lot Id :<span id="idStyle"> {{ lotId }} </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>do you want to delete this lot?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ngbAutofocus class="btn btn-outline-dark" id="cancel" (click)='close()'>
+            Cancel
+        </button>
+        <button type="button" class="btn btn-outline-danger" (click)='deleteLot()'>
+            Delete
+        </button>
+    </div>
+</ng-template>
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            <span id="idStyle"> New Batch </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <form [formGroup]="formLotC">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="nameLot">Name : </label>
+                <input ngbAutofocus formControlName="nameLot" type="text" class="form-control" id="nameLot" />
+            </div>
+
+            <div class="form-group">
+                <label for="street">Street :</label>
+                <input formControlName="street" type="text" class="form-control" id="street" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" id="cancel" (click)='close()'>
+                Cancel
+            </button>
+            <button type="button" class="btn btn-success" (click)='createLot()'>
+                Create
+            </button>
+        </div>
+    </form>
+</ng-template>
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<app-footer></app-footer>

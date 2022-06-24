@@ -1,0 +1,77 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+
+<hr id="hidden">
+{{print()}}<div class="page-content page-container" id="page-content">
+    <div class="row m-l-0 m-r-0" id="containerAll">
+        <div class="col-sm-4 bg-c-lite-green user-profile" id="containerPic">
+            <div class="card-block text-center text-black">
+                <div class="m-b-25"> <img src="assets/images/profile.png" class="img-radius" id="profile"
+                        alt="User-Profile-Image">
+                </div>
+                <div id='h6'>
+                    Id :
+                    <h6 class="text-muted " id="h6"> {{agency.agencyId}}</h6><br>
+                    Name :
+                    <h6 class="text-muted" id="h6">{{agency.name}}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5" id='container2'>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Email</p>
+                        <h6 class="text-muted f-w-400">{{agency.email}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Fix</p>
+                        <h6 class="text-muted f-w-400">{{agency.mobile}}</h6>
+                    </div>
+
+                </div>
+                <hr id='hr1'>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Address</p>
+                        <h6 class="text-muted f-w-400">{{agency.country}}</h6>
+                        <h6 class="text-muted f-w-400">{{agency.city}}</h6>
+
+                    </div>
+                    <div class="col-sm-6" id='add2'><br>
+                        <h6 class="text-muted f-w-400">{{agency.street}}</h6>
+                        <h6 class="text-muted f-w-400">{{agency.postal}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<app-footer></app-footer>

@@ -1,0 +1,46 @@
+<app-header></app-header>
+<img src="assets/images/login1.PNG" id="login1" />
+<img src="assets/images/logo.png" id="logo" />
+<div class="row" id="formu">
+    <div class="col-md-4 mt-5 mx-auto">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" class="form-control" id="email">
+                <div
+                    *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty )">
+                    <div *ngIf="loginForm.get('email')?.getError('required')">This field is Required</div>
+                    <div *ngIf="loginForm.get('email')?.getError('email')">This field should be email address</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password">
+                <div
+                    *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty )">
+                    <div *ngIf="loginForm.get('password')?.getError('required')">This field is Required</div>
+                    <div *ngIf="loginForm.get('password')?.getError('minlength')">This field should had minimum 8
+                        caracters
+                    </div>
+                    <div *ngIf="loginForm.get('password')?.getError('maxlength')">This field should had maximum 20
+                        caracter
+                    </div>
+                </div>
+            </div>
+            <div id="signup">
+                Have not an account yet ? <a routerLink="/agency/sign-up">Sign up</a>
+            </div>
+            <div class="d-grid gap-2 mt-3">
+                <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary" id="btn">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="footerlogin">
+    <app-footer></app-footer>
+</div>
+<!-- <div class="alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div> -->

@@ -1,0 +1,136 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<hr id="hidden" />
+<table class="table table-hover" id="tableAgent">
+    <tbody>
+        <tr class="table-primary" id="th">
+            <th scope="col">Agent Id</th>
+            <th scope="col">CIN</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Lot</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr class="table-light" *ngFor="let agent of agents" [hidden]="agent.firstName == 'test'">
+            <td>{{ agent.agentId }}</td>
+            <td>{{ agent.cin }}</td>
+            <td>{{ agent.firstName }} {{ agent.lastName }}</td>
+            <td>{{ agent.email }}</td>
+            <td>{{ agent.mobile }}</td>
+            <td *ngIf="agent.confirmed">Confirmed</td>
+            <td *ngIf="!agent.confirmed">Not Confirmed</td>
+            <td>{{ agent.flag }}</td>
+            <td colspan="11" id="btnParent">
+                <button type="button" class="btn btn-success" (click)="open(content, agent.agentId)"
+                    [disabled]='testConfirmed(agent.confirmed)'>
+                    <i class="fas fa-check-square"></i>
+                </button>
+                <button type="button" class="btn btn-warning"
+                    (click)="openLot(content3, agent.firstName,agent.lastName)"
+                    [disabled]='(testConfirmed(agent.confirmed)&& testLot(agent.flag))'>
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="open(content2, agent.agentId)">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+        <tr class="table-light" [hidden]="flag">
+            <td scope="row" colspan="19">no agent in this agency</td>
+        </tr>
+    </tbody>
+</table>
+<hr id="hidden" />
+<hr id="hidden" />
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            Agent Id :<span id="idStyle"> {{ agentId }} </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>do you want to confirm this agent?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" id="cancel" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" ngbAutofocus class="btn btn-outline-success" id="confirm" (click)="confirmAgent()">
+            Confirm
+        </button>
+    </div>
+</ng-template>
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            Agent Id :<span id="idStyle"> {{ agentId }} </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>do you want to delete this agent?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ngbAutofocus class="btn btn-outline-dark" id="cancel" (click)="close()">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteAgent()">
+            Delete
+        </button>
+    </div>
+</ng-template>
+<ng-template #content3 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            Agent Id :<span id="idStyle"> {{ agentId }} </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <form [formGroup]="formLot">
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="form-check-label mr-4" for="lots"> Lots </label>
+                <select class="form-select" id="lots" formControlName="lot" ngbAutofocus>
+                    <option *ngFor="let lot of lots" [selected]="lot.nameLot!=null" value={{lot.lotId}}>{{lot.nameLot}}
+                    </option>
+                    <option [hidden]="!flagL">no lot is registered
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" id="cancel" (click)="close()">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-outline-warning" (click)="affecterLot()">
+                Assign
+            </button>
+        </div>
+    </form>
+</ng-template>
+<app-footer></app-footer>

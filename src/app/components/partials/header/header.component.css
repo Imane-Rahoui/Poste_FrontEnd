@@ -1,0 +1,37 @@
+#Text1 {
+  margin-top: 9px;
+  margin-left: 30px;
+}
+a {
+  text-decoration: none;
+}
+#Text2,
+#Text3 {
+  margin-top: 9px;
+  margin-left: 10px;
+  position: relative;
+  right: 150px;
+}
+#iconAcceuil1 {
+  margin-right: 9px;
+}
+#iconAcceuil2 {
+  margin-top: 14px;
+  margin-right: 9px;
+  font-size: 20px;
+}
+.tp {
+  background-color: #415e92;
+  color: white;
+}
+#Text1:hover,
+#Text2:hover,
+#Text3:hover,
+#iconAcceuil1:hover,
+#iconAcceuil2:hover {
+  color: #a4b6c9;
+  cursor: pointer;
+}
+a {
+  color: white;
+}

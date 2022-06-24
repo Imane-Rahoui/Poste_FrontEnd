@@ -1,0 +1,49 @@
+#hidden {
+  color: transparent;
+}
+#btnParent > .btn {
+  width: 40px;
+  padding: 5px;
+  margin-left: 5px;
+}
+#th {
+  text-align: center;
+}
+#tableAgent {
+  width: 1000px;
+  position: relative;
+  left: 95px;
+  text-align: center;
+}
+.table-primary {
+  --bs-table-bg: #b2ddd9;
+  --bs-table-hover-bg: #b2ddd9;
+  --bs-table-hover-color: #415e92;
+  color: #415e92;
+}
+#crossC {
+  font-size: 20px;
+  color: rgb(165, 30, 30);
+}
+#cross {
+  border: transparent;
+  background-color: transparent;
+}
+#add {
+  background-color: #415e92;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+  left: 1000px;
+  transition: padding 0.2s;
+}
+#add:hover {
+  background-color: #b2ddd9;
+  border-color: #b2ddd9;
+  color: #415e92;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 13px;
+  padding-left: 14px;
+  margin-bottom: -1px;
+}

@@ -1,0 +1,337 @@
+<app-header></app-header>
+<p id='img'></p>
+<form [formGroup]="signUp" class="text-center border border-light" id="conteneur">
+    <p class="h4 mb-4">Sign up</p>
+
+    <div class="form-row">
+        <div class="col">
+            <input type="text" value={{signUp.value.cin}} formControlName="cin" id="cin" class="form-control mb-2"
+                placeholder="CIN" />
+        </div>
+        <div class="col">
+            <input type="text" value={{signUp.value.name}} formControlName="name" id="name" class="form-control mb-2"
+                placeholder="Name" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <input type="email" value={{signUp.value.email}} formControlName="email" id="email"
+                class="form-control mb-2" placeholder="E-mail" />
+        </div>
+        <div class="col">
+            <input type="password" value={{signUp.value.password}} formControlName="password" id="password"
+                class="form-control mb-2" placeholder="Password" />
+        </div>
+        <div class="col">
+            <input type="text" formControlName="mobile" value={{signUp.value.mobile}} id="mobile"
+                class="form-control mb-4" placeholder="Phone number" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" formControlName="country" value={{signUp.value.country}} id="country"
+                class="form-control mb-2" placeholder="Country" />
+        </div>
+        <div class="col">
+            <input type="text" formControlName="city" id="city" value={{signUp.value.city}} class="form-control mb-2"
+                placeholder="City" />
+        </div>
+        <div class="col">
+            <input type="text" formControlName="street" id="street" value={{signUp.value.street}}
+                class="form-control mb-4" placeholder="Street" />
+        </div>
+        <div class="col">
+            <input type="text" formControlName="postal" value={{signUp.value.postal}} id="postal"
+                class="form-control mb-4" placeholder="Postal" />
+        </div>
+    </div>
+    <hr />
+    <p>
+        By clicking <em>Sign up</em> you agree to our
+        <button type="button" class="btn btn-link" (click)="open(content)">terms of service</button>
+
+    </p>
+    <div class="d-grid gap-2 mt-3">
+        <button *ngIf="!flag" [disabled]="signUp.invalid" class="btn btn-lg btn-primary" id="btn"
+            (click)="signUpFct()">Sign up</button>
+    </div>
+    <div *ngIf="flag" class="alert alert-dismissible alert-success">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Well done!</strong> registration was successful.<br> You want to <a routerLink="/agency/login">Login
+        </a>?
+    </div>
+</form>
+{{print()}}
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">
+            <span id="idStyle">Terms of service </span>
+        </h6>
+        <button type="button" class="close" aria-label="Close" id="cross" (click)="d('Cross click')">
+            <i class="fas fa-times" id="crossC"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Avec le développement de l’Internet au Maroc, les administrations publiques
+            cherchent de plus en plus d’avoir une présence sur l’Internet via des sites web
+            ou des applications web offrant des services aux citoyens ou aux tierces entités.
+            Cependant, les vulnérabilités de ces applications Web sont désormais le vecteur
+            le plus important des attaques dirigées contre la sécurité des systèmes d’information de ces
+            administrations. En
+            effet, D’après les différents rapports publiés cette
+            année par les observatoires et sociétés de sécurité informatiques, les attaques web
+            sont en constante augmentation. Les conséquences peuvent être très lourdes pour
+            les administrations victimes de cette situation :
+            • Atteinte à l’image de l’administration,
+            • Une défiguration du site pour relayer un message politique (hacktivisme), pour
+            dénigrer ou pour revendiquer son attaque,
+            • Mise en danger de l’intégrité du système d’information,
+            • Exfiltration des données et d’information sensibles.
+            A cet effet, nous ne pouvons plus nous permettre de tolérer les problèmes les
+            plus simples comme ceux présentés dans le Top 10 OWASP 1 qui sont dus principalement à un développement et
+            un
+            déploiement non sécurisé. Ainsi, la mise en
+            place de méthodes et d’outils pour gérer le développement et le contrôle qualité
+            des applications s’avère plus que nécessaire pour réduire leur vulnérabilité.
+            Dans ce cadre, le présent guide se propose d’aider les responsables de la sécurité des systèmes
+            d’information, à
+            travers la présentation des règles de sécurité
+            devant être respectées pendant les différentes phases du cycle de vie d’une application, à mieux sécuriser
+            leurs
+            applications web. Ainsi, le présent document est
+            organisé en quatre parties :
+            • La première partie présente les recommandations de base à respecter, notamment les clauses de sécurité à
+            intégrer
+            dans le cahier des spécifications spéciales
+            ainsi que la formation ;
+            • La deuxième partie est consacrée aux meilleures pratiques permettant d’éviter
+            les failles les plus connus dans le développement des applications web.
+            • Enfin, La troisième partie porte sur les bonnes pratiques à respecter lors du déploiement et la mise en
+            production
+            d’une application web. Aussi, elle explique
+            le processus de détection des incidents ainsi que la conduite à tenir au cas où un
+            incident se produit.
+            1. Open Web Application Security Project est une communauté publique permettant à des organismes de
+            développer,
+            acheter et maintenir des applications fiables. A l’OWASP, vous trouverez
+            en accès libre et gratuit sur www.owasp.org/
+            DGSSI 3
+            Guide de sécurité des applications WEB
+            2 Recommandations de base
+            2.1 Cahier des Prescriptions Spéciales (CPS)
+            Lors de l’élaboration du CPS, les besoins et les objectifs de sécurité doivent
+            être clairement identifiés. Ces besoins et objectifs doivent être spécifiés et exigés
+            dans les clauses de sécurité se rapportant aux quatre phases d’exécution du projet : analyse des besoins,
+            conception, développement et recette.
+            2.1.1 Phase d’analyse des besoins
+            Le maitre d’œuvre (MO) et le maitre d’ouvrage (MOA) doivent définir conjointement les besoins de
+            l’application en
+            matière de sécurité conformément au processus ci-après :
+            • Evaluation du risque : identifier et documenter les risques auxquels l’application pourrait être
+            confrontée, que
+            ce soit sur les biens (infrastructures informatiques, données, etc.) ou sur les fonctions importantes
+            fournies par
+            cette application. A cet effet, chacun des sujets énumérés dans la section des exigences ci-après
+            devrait être considéré.
+            • Définition des exigences de sécurité : les exigences de sécurité sont à élaborer en fonction des
+            spécifications de
+            l’application web à développer. Chacun des
+            sujets suivant devrait être discuté et évalué par le développeur et le client (propriétaire métier de
+            l’application)
+            afin de comprendre les risques et définir les exigences de sécurité appropriés :
+            - Gestion des entrées et sorties ;
+            - Authentification et gestion de session ;
+            - Contrôle d’accès ;
+            - Gestion d’erreur ;
+            - Journalisation ;
+            - Connexions aux systèmes externes ;
+            - Chiffrement ;
+            - Disponibilité.
+            - Vulnérabilités spécifiques : Les exigences devront inclure un ensemble de vulnérabilités basiques qui
+            doivent
+            impérativement être évitées. Il s’agit principalement des défaillances décrites dans la liste « OWASP Top
+            Ten Most
+            Critical Web
+            Application Vulnérabilités ».
+            Les exigences de sécurité de chacun des sujets énumérés en-dessus seront développées dans les parties qui
+            suivent de
+            ce document.
+            DGSSI 4
+            Guide de sécurité des applications WEB
+            2.1.2 Phase de conception
+            Une fois les besoins de sécurité et les menaces identifiés, il convient de concevoir la sécurité de
+            l’application
+            Web, c’est-à-dire de définir précisément les mécanismes de sécurité qui sont en mesure de répondre aux
+            exigences
+            fixées. Un document de conception doit décrire formellement ces mécanismes, en fournissant
+            une bonne visibilité sur la manière dont les menaces seront gérées. La conception
+            devrait clairement préciser les versions des logiciels et la plateforme utilisée ainsi
+            que tous composants de tierce partie.
+            2.1.3 Phase de développement
+            Le développeur convient de fournir et de suivre un ensemble de lignes directrices de codage sécurisé et
+            d’utiliser
+            un ensemble de bibliothèques de sécurité.
+            L’équipe de développement peut se référer au guide de conception et d’implémentation d’applications Web
+            sécurisées
+            de l’OWASP.
+            2.1.4 Phase de la recette
+            Cette phase vise à assurer que l’application est conforme aux exigences définies pendant l’étape d’analyse
+            des
+            besoins. Elle implique le déroulement rigoureux de procédures de tests et d’évaluation préalablement
+            décrits. Elle
+            doit aussi
+            inclure une évaluation des vulnérabilités et tests de pénétration, et une analyse
+            du code source conformément aux exigences de vérification d’une norme arrêté
+            d’avance (par exemple la norme OWASP ASVS).
+            Le développeur doit fournir le code source, les différentes composantes de l’application (les librairies
+            utilisées,
+            la version du CMS, . . . ). Ces différentes composantes doivent être livrées à leur dernière version.
+            L’étape d’élaboration du cahier de charges est primordiale, il est recommandé de
+            suivre le document d’OWASP spécifiant les points à préciser lors de l’élaboration
+            du cahier de charge :
+            https ://www.owasp.org/index.php/File :OWASP_Secure_Software_Contract_AnnexFR.doc
+            2.2 Formation et sensibilisation
+            Tous les membres de l’équipe-projet doivent être d’une part, sensibilisés aux
+            enjeux et risques de sécurité et d’autre part, formés aux mécanismes de sécurité
+            de base :
+            • La maîtrise d’ouvrage doit être en mesure d’identifier les enjeux de sécurité
+            pour exprimer les besoins ;
+            • Le chef de projet doit connaitre les normes de sécurité à respecter lors du déploiement ;
+            • Les développeurs doivent être en mesure d’implémenter les règles de sécurité
+            générales ainsi que celles spécifiques aux technologies Web utilisés ;
+            • En cas de développement externe, le prestataire doit justifier le fait qu’il dispose
+            DGSSI 5
+            Guide de sécurité des applications WEB
+            des compétences en développement sécurisé pour répondre convenablement au
+            besoin.
+            Malgré le respect des bonnes pratiques lors du développement des applications
+            web, de nouveaux types de vulnérabilités peuvent apparaitre. Il est donc important d’assurer une veille de
+            sécurité
+            pour remédier à ces vulnérabilités et éventuellement revoir les mécanismes de sécurité initialement mis en
+            place.
+            DGSSI 6
+            Guide de sécurité des applications WEB
+            3
+            Recommandations au cours de développement
+            Cette partie liste les meilleures pratiques permettant de sensibiliser et aider
+            les équipes de développement à créer des applications plus sécurisées. C’est une
+            première étape vers la construction d’une base de connaissances autour de la
+            sécurité des applications web. Cette liste permet d’identifier les règles minimales
+            nécessaires pour neutraliser les failles dans les applications les plus critiques.
+            3.1 Authentification et gestion de session
+            Les fonctions applicatives relatives à l’authentification et à la gestion de session ne sont souvent pas
+            correctement mises en œuvre. Ceci permet aux attaquants de compromettre les mots de passe ainsi que les clés
+            et les
+            jetons de session, ou d’exploiter d’autres failles d’implémentation pour s’approprier les identités d’autres
+            utilisateurs.
+            3.1.1 Authentification
+            R 1 Ne pas coder en dur les identifiants c.-à-d. ne jamais laisser les informations d’identification
+            stockées
+            directement dans le code de l’application.
+            R 2 Développer un système de réinitialisation des mots de passe fort. Ces
+            systèmes sont en général basés sur les réponses données par les utilisateurs suite à des questions
+            personnelles et
+            qui permettent de deviner
+            leurs identités et réinitialiser leurs mots de passe. Le système doit être
+            basé sur des questions qui sont à la fois difficiles à deviner et à casser.
+            En outre, une option de réinitialisation de mots de passe ne doit pas
+            révéler si un compte est valide ou pas afin d’empêcher l’énumération
+            des noms des utilisateurs.
+            R 3 Gérer correctement les messages d’erreurs d’authentification afin de
+            prévenir l’énumération des utilisateurs. A titre d’exemple, les messages
+            d’erreurs qui révèlent que l’identifiant de l’utilisateur est valide et que
+            le mot de passe est incorrect confirme que ce compte existe sur le système.
+            R 4 Favoriser l’utilisation d’un annuaire LDAP.
+            DGSSI 7
+            Guide de sécurité des applications WEB
+            R 5 Mettre en oeuvre une politique complexe de mot de passe :
+            – La longueur minimale d’un mot de passe doit être de 12 caractères
+            au minimum ;
+            – Les types de caractères qui doivent être utilisés dans un mot de passe
+            sont : lettre (majuscule et minuscule), chiffre, caractère spécial ;
+            – Le mot de passe ne doit pas comporter le login ;
+            – Le nouveau mot de passe doit comporter au moins 4 différentes
+            lettres par rapport à l’ancien mot de passe ;
+            – Procéder au changement régulier des mots de passe ;
+            – Une fois un mot de passe est expiré, cinq changements sont requis
+            avant la réutilisation de ce mot de passe ;
+            – La communication des mots de passe aux utilisateurs doit se faire
+            d’une manière sécurisée. Il est recommandé de ne pas utiliser à cette
+            fin un courrier électronique non protégé ;
+            – Les mots de passe par défaut des constructeurs et des éditeurs
+            doivent être modifiés après l’installation ;
+            – Les comptes par défauts doivent être renommés ou désactivés.
+            R 6 Implémenter des règles contre les attaques de ”Brute Force” :
+            – En cas d’utilisation de LDAP, il est recommandé de verrouiller pendant une période déterminée tout compte
+            utilisateur qui subit plus
+            de trois tentatives d’authentification erronées. Cette période ne doit
+            pas dépasser 5 min afin d’éviter une attaque par dénis de service.
+            – Dans le cas le contraire (LDAP non utilisé) : il faut implémenter un
+            CAPTCHA.
+            R 7 Envisager pour des applications sensibles, l’utilisation d’authentification forte.
+            3.1.2 Gestion des sessions
+            Une session est une connexion, limitée dans le temps, entre un client et un
+            serveur. Elle est définie par un jeton de session (ou identifiant de session) qui est
+            généré aléatoirement et souvent enregistré du côté client dans un cookie. Dans ce
+            cadre, il faut :
+            R 8 S’assurer que les identificateurs de session sont suffisamment ”aléatoires” : Les jetons de session
+            doivent être
+            générés par des fonctions
+            aléatoires sécurisées et avoir une longueur suffisamment longue pour
+            résister à l’analyse et à la prévision (entropie de 128 bits minimum).
+            R 9 Régénérer les jetons de session : Les jetons de session doivent être régénérés chaque fois que
+            l’utilisateur
+            s’authentifie auprès d’une application ou change de niveau de privilège. De même, une fois le statut de
+            cryptage change, le jeton de session doit obligatoirement être régénéré.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="close()">Close</button>
+    </div>
+</ng-template>
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id="hidden">
+<hr id='exception'>
+<app-footer></app-footer>

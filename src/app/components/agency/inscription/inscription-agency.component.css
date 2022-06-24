@@ -1,0 +1,42 @@
+#conteneur {
+  width: 500px;
+  position: absolute;
+  top: 80px;
+  left: 400px;
+  margin-top: 30px;
+  border: solid black 5px;
+  padding: 40px;
+  background-color: #ecf0f1;
+  border-radius: 5px;
+}
+#img {
+  background-image: url("/assets/images/bck.PNG");
+  min-height: 850px;
+  min-width: 200px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  left: 0px;
+}
+#hidden {
+  color: transparent;
+}
+#exception {
+  margin-bottom: 60px;
+  color: transparent;
+}
+#idStyle {
+  color: #415e92;
+}
+#crossC {
+  font-size: 20px;
+  color: rgb(165, 30, 30);
+}
+#cross {
+  border: transparent;
+  background-color: transparent;
+}
